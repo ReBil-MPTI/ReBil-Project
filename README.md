@@ -6,7 +6,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/2772/2772128.png" alt="Database Logo" width="80" />
 </p>
 
-> **ReBil-MPTI** adalah proyek Laravel yang dibangun dengan Laravel 12.x dan PHP 8.2 untuk sistem manajemen data berbasis web.
+> **ReBil-MPTI** adalah proyek Laravel yang dibangun dengan Laravel 12.x dan PHP 8.2 untuk sistem sewa mobil berbasis website
 
 ---
 
