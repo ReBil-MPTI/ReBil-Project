@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\CarCrud\Cars;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::view('/', 'dashboard')->name('dashboard');
+        Route::view('/profile', 'profile')->name('profile');
+        Route::get('/mobil', Cars::class)->name('cars.index');
+    });
+});
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

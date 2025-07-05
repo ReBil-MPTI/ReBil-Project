@@ -36,7 +36,7 @@ new class extends Component {
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    <x-nav-link :href="route('cars.index')" :active="request()->routeIs('cars.index')" wire:navigate>
                         <i class="bi bi-car-front-fill mx-2"></i>
                         {{ __('Data Mobil') }}
                     </x-nav-link>
