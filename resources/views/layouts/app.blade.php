@@ -18,28 +18,27 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <!-- Include Navigation (Sidebar) -->
         <livewire:layout.navigation />
 
-        <!-- Page Heading -->
+        <!-- Page Heading - positioned after sidebar -->
         @if (isset($header))
-            <header class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header class="bg-white dark:bg-gray-800 shadow lg:ml-64">
+                <div class="max-w-7xl mx-auto py-7 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
         @endif
 
-        <!-- Page Content -->
-        <main>
-            <div class="container px-20">
+        <!-- Page Content - positioned after sidebar -->
+        <main class="lg:ml-64">
+            <div class="container px-4 sm:px-6 lg:px-8">
                 <div class="md:p-10 bg-white border-2 border-black rounded-2xl md:mt-10 md:mb-10">
                     {{ $slot }}
                 </div>
             </div>
         </main>
     </div>
-
-    {{-- @stack('scripts') --}}
 </body>
 
 </html>

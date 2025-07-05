@@ -1,5 +1,10 @@
 <div class="p-4">
     {{-- Flash Message --}}
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Daftar Mobil') }}
+        </h2>
+    </x-slot>
     @if (session()->has('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
             class="bg-green-100 text-green-700 p-2 rounded mb-4">
@@ -16,7 +21,6 @@
 
     {{-- Header --}}
     <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-bold flex items-center">Daftar Mobil</h2>
         <div class="flex flex-col md:flex-row md:items-center gap-3 mb-4 mt-2">
             {{-- Input pencarian nama --}}
             <input type="text" wire:model.live.debounce.300ms="searchName"
