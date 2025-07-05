@@ -19,7 +19,7 @@ new class extends Component {
 <div x-data="{ sidebarOpen: false }">
     <!-- Sidebar -->
     <div :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0">
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-primary dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0">
 
         <!-- Sidebar Header -->
         <div class="flex items-center justify-between h-20 px-4 border-b border-gray-200 dark:border-gray-700">
@@ -39,13 +39,13 @@ new class extends Component {
         <!-- Navigation Links -->
         <nav class="mt-5 flex-1 px-2 space-y-1">
             <a href="{{ route('dashboard') }}" wire:navigate
-                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white' }}">
+                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('dashboard') ? 'bg-blue-100 text-primary dark:bg-blue-900 dark:text-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white' }}">
                 <i class="bi bi-grid-1x2-fill mr-3 h-5 w-5"></i>
                 {{ __('Dashboard') }}
             </a>
 
             <a href="{{ route('cars.index') }}" wire:navigate
-                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('cars.index') ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white' }}">
+                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('cars.index') ? 'bg-blue-100 text-primary dark:bg-blue-900 dark:text-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white' }}">
                 <i class="bi bi-car-front-fill mr-3 h-5 w-5"></i>
                 {{ __('Data Mobil') }}
             </a>
@@ -57,9 +57,9 @@ new class extends Component {
             </a>
         </nav>
         <div class="fixed bottom-10 w-full">
-            <div class="px-4 py-2 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-4 py-2  border-gray-200">
                 <div x-data="{ dark: localStorage.getItem('theme') === 'dark' }" x-init="document.documentElement.classList.toggle('dark', dark)" class="flex items-center justify-between">
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Dark Mode</span>
+                    <span class="text-sm font-medium text-white dark:text-gray-200">Dark Mode</span>
                     <label class="inline-flex items-center cursor-pointer">
                         <input type="checkbox" x-model="dark"
                             @change="localStorage.setItem('theme', dark ? 'dark' : 'light');
@@ -74,20 +74,20 @@ new class extends Component {
             </div>
 
             <!-- User Profile Section with Dropdown -->
-            <div class="flex-shrink-0 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex-shrink-0 ">
                 <div x-data="{ dropdownOpen: false }" class="relative">
                     <button @click="dropdownOpen = !dropdownOpen"
-                        class="w-full flex items-center px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
+                        class="w-full flex items-center px-4 py-3 text-sm font-medium text-white hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
                         <div class="flex-shrink-0">
                             <div
                                 class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-200">
+                                <span class="text-sm font-medium text-white dark:text-gray-200">
                                     {{ substr(auth()->user()->name, 0, 1) }}
                                 </span>
                             </div>
                         </div>
                         <div class="ml-3 flex-1 text-left">
-                            <p class="text-sm font-medium text-gray-700 dark:text-gray-200" x-data="{{ json_encode(['name' => auth()->user()->name]) }}"
+                            <p class="text-sm font-medium text-white dark:text-gray-200" x-data="{{ json_encode(['name' => auth()->user()->name]) }}"
                                 x-text="name" x-on:profile-updated.window="name = $event.detail.name">
                             </p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">
@@ -116,7 +116,7 @@ new class extends Component {
 
                         <div class="py-1">
                             <a href="{{ route('profile') }}" wire:navigate
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
                                 <i class="bi bi-person-fill mr-2"></i>
                                 {{ __('Profile') }}
                             </a>
