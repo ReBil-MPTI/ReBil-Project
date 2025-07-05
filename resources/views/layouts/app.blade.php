@@ -31,7 +31,7 @@
         @endif
 
         <!-- Page Content - positioned after sidebar -->
-        <main class="lg:ml-64">
+        <main class="lg:ml-64 border dark:border-gray-800">
             <div class="container px-4 sm:px-6 lg:px-8">
                 <div class="md:p-10 bg-white border-2 border-black rounded-2xl md:mt-10 md:mb-10">
                     {{ $slot }}
