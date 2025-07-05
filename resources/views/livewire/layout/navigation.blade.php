@@ -22,7 +22,7 @@ new class extends Component {
         class="fixed inset-y-0 left-0 z-50 w-64 bg-primary dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0">
 
         <!-- Sidebar Header -->
-        <div class="flex items-center justify-between h-20 px-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between h-20 px-4 border-b border-gray-400 dark:border-gray-700">
             <div class="flex items-center">
                 <x-application-logo class="block h-8 w-auto fill-current text-gray-800 dark:text-gray-200" />
             </div>
