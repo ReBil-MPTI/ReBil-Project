@@ -5,15 +5,17 @@ namespace App\Livewire\CarCrud;
 use Livewire\Component;
 use App\Models\Car;
 use App\Models\CarType;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class Cars extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
     public $carName;
     public $carTypeId;
     public $policeNumber;
     public $carYear;
+    public $carImage;
 
     public $modalVisibleForm = false;
 
@@ -21,6 +23,7 @@ class Cars extends Component
         'carName' => 'required|string',
         'carTypeId' => 'required|exists:car_types,id',
         'policeNumber' => 'required|string|unique:cars,police_number',
+        'carImage' => 'required|image|max:2048',
         'carYear' => 'required|integer|min:1900',
     ];
 
@@ -33,6 +36,9 @@ class Cars extends Component
         'carYear.required' => 'Tahun pengeluaran wajib diisi!',
         'carYear.integer' => 'Tahun pengeluaran harus berupa angka!',
         'carYear.min' => 'Tahun pengeluaran tidak boleh kurang dari 1900!',
+        'carImage.required' => 'Gambar mobil wajib diunggah!',
+        'carImage.image' => 'File yang diunggah harus berupa gambar!',
+        'carImage.max' => 'Ukuran gambar tidak boleh lebih dari 2MB!',
     ];
 
     public function render()
@@ -54,9 +60,14 @@ class Cars extends Component
         $this->validate();
 
         try {
+            if ($this->carImage) {
+                $imagePath = $this->carImage->store('cars', 'public');
+                $this->carImage = $imagePath;
+            }
             Car::create([
                 'car_name' => $this->carName,
                 'car_type_id' => $this->carTypeId,
+                'car_image' => $this->carImage,
                 'police_number' => $this->policeNumber,
                 'year' => $this->carYear,
             ]);
