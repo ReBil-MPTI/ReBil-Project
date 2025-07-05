@@ -23,7 +23,7 @@
 
         <!-- Page Heading - positioned after sidebar -->
         @if (isset($header))
-            <header class="bg-white dark:bg-gray-800 shadow lg:ml-64">
+            <header class=" dark:bg-gray-800  lg:ml-64">
                 <div class="max-w-7xl mx-auto py-7 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>

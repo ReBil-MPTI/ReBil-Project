@@ -136,7 +136,7 @@ new class extends Component {
     </div>
 
     <!-- Mobile menu button -->
-    <div class="lg:hidden fixed top-4 left-4 z-50">
+    <div x-show="!sidebarOpen" class="lg:hidden fixed top-4 right-4 z-50">
         <button @click="sidebarOpen = true"
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
