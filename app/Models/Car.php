@@ -12,4 +12,9 @@ class Car extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function carType()
+    {
+        return $this->belongsTo(CarType::class);
+    }
 }
