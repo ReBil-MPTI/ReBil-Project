@@ -44,6 +44,7 @@
     </table>
 
 
+
     @if ($modalVisibleForm)
         <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
             <div class="bg-white w-full max-w-xl rounded-2xl shadow-lg p-8">
@@ -89,5 +90,7 @@
             </div>
         </div>
     @endif
-
+    <div class="mt-4">
+        {{ $cars->links() }}
+    </div>
 </div>

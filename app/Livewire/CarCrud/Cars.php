@@ -5,9 +5,11 @@ namespace App\Livewire\CarCrud;
 use Livewire\Component;
 use App\Models\Car;
 use App\Models\CarType;
+use Livewire\WithPagination;
 
 class Cars extends Component
 {
+    use WithPagination;
     public $carName;
     public $carTypeId;
     public $policeNumber;
@@ -37,7 +39,7 @@ class Cars extends Component
     {
         return view('livewire.car-crud.cars', [
             'carTypes' => CarType::all(),
-            'cars' => Car::with('carType')->latest()->get()
+            'cars' => Car::with('carType')->latest()->paginate(10),
         ])->layout('layouts.app');
     }
 
