@@ -32,14 +32,14 @@
         <!-- Page Content -->
         <main>
             <div class="container px-20">
-                <div class="md:p-10 bg-white border-2 border-black rounded-2xl md:mt-10">
+                <div class="md:p-10 bg-white border-2 border-black rounded-2xl md:mt-10 md:mb-10">
                     {{ $slot }}
                 </div>
             </div>
         </main>
     </div>
 
-    @stack('scripts')
+    {{-- @stack('scripts') --}}
 </body>
 
 </html>
