@@ -31,7 +31,11 @@
 
         <!-- Page Content -->
         <main>
-            {{ $slot }}
+            <div class="container px-20">
+                <div class="md:p-10 bg-white border-2 border-black rounded-2xl md:mt-10">
+                    {{ $slot }}
+                </div>
+            </div>
         </main>
     </div>
 </body>
