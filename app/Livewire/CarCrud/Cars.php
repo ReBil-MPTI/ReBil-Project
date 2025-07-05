@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 class Cars extends Component
 {
     use WithPagination, WithFileUploads;
+
     public $carName;
     public $carTypeId;
     public $policeNumber;
@@ -19,9 +20,16 @@ class Cars extends Component
     public $carId = null;
     public $confirmingDelete = false;
     public $deleteId = null;
-
+    public $searchName = '';
+    public $availableYears = [];
+    public $filterYear = '';
     public $modalVisibleForm = false;
     public $modalEdit = false;
+
+    protected $queryString = [
+        'searchName' => ['except' => '', 'as' => 'search'],
+        'filterYear' => ['except' => '']
+    ];
 
     protected $rules = [
         'carName' => 'required|string',
@@ -45,12 +53,53 @@ class Cars extends Component
         'carImage.max' => 'Ukuran gambar tidak boleh lebih dari 2MB!',
     ];
 
+    public function mount()
+    {
+        $this->loadAvailableYears();
+    }
+
+    public function loadAvailableYears()
+    {
+        $this->availableYears = Car::select('year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year')
+            ->toArray();
+
+        $currentYear = date('Y');
+        if (!in_array($currentYear, $this->availableYears)) {
+            array_unshift($this->availableYears, $currentYear);
+        }
+    }
+
     public function render()
     {
+        $query = Car::with('carType');
+
+        if (!empty($this->searchName)) {
+            $query->where('car_name', 'like', '%' . $this->searchName . '%');
+        }
+
+        if (!empty($this->filterYear)) {
+            $query->where('year', $this->filterYear);
+        }
+
+        $cars = $query->latest()->paginate(10);
+
         return view('livewire.car-crud.cars', [
             'carTypes' => CarType::all(),
-            'cars' => Car::with('carType')->latest()->paginate(10),
+            'cars' => $cars,
         ])->layout('layouts.app');
+    }
+
+    public function updatedSearchName()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFilterYear()
+    {
+        $this->resetPage();
     }
 
     public function showModalForm()
@@ -79,6 +128,8 @@ class Cars extends Component
             session()->flash('success', 'Mobil berhasil ditambahkan.');
             $this->resetForm();
             $this->modalVisibleForm = false;
+
+            $this->loadAvailableYears();
         } catch (\Exception $e) {
             session()->flash('error', 'Gagal menyimpan data: ' . $e->getMessage());
         }
@@ -93,7 +144,7 @@ class Cars extends Component
         $this->carTypeId = $car->car_type_id;
         $this->policeNumber = $car->police_number;
         $this->carYear = $car->year;
-        $this->carImage = null; // reset karena kita tidak mengisi file input
+        $this->carImage = null;
 
         $this->modalEdit = true;
         $this->modalVisibleForm = true;
@@ -129,11 +180,12 @@ class Cars extends Component
             $this->modalVisibleForm = false;
             $this->modalEdit = false;
 
+            $this->loadAvailableYears();
+
         } catch (\Exception $e) {
             session()->flash('error', 'Gagal memperbarui data: ' . $e->getMessage());
         }
     }
-
 
     public function confirmDelete($id)
     {
@@ -146,6 +198,8 @@ class Cars extends Component
         try {
             Car::findOrFail($this->deleteId)->delete();
             session()->flash('success', 'Mobil berhasil dihapus.');
+
+            $this->loadAvailableYears();
         } catch (\Exception $e) {
             session()->flash('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
@@ -154,11 +208,17 @@ class Cars extends Component
         $this->deleteId = null;
     }
 
-
     public function resetForm()
     {
         $this->reset(['carId', 'carName', 'carTypeId', 'policeNumber', 'carYear', 'carImage']);
         $this->resetErrorBag();
         $this->resetValidation();
+    }
+
+    public function clearFilters()
+    {
+        $this->searchName = '';
+        $this->filterYear = '';
+        $this->resetPage();
     }
 }
