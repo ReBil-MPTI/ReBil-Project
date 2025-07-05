@@ -48,8 +48,13 @@
                     <td class="px-6 py-4">{{ $mobil->police_number }}</td>
                     <td class="px-6 py-4">{{ $mobil->year }}</td>
                     <td class="px-6 py-4">
-                        <button class="bg-green-200 text-green-800 px-4 py-1 rounded-full text-xs">Edit</button>
-                        <button class="bg-red-200 text-red-800 px-4 py-1 rounded-full text-xs">hapus</button>
+                        <button class="bg-green-200 text-green-800 px-4 py-1 rounded-full text-xs"
+                            wire:click="edit({{ $mobil->id }})">Edit</button>
+
+                        <button class="bg-red-200 text-red-800 px-4 py-1 rounded-full text-xs ml-2"
+                            wire:click="confirmDelete({{ $mobil->id }})">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             @empty
@@ -122,12 +127,38 @@
                 <div class="flex justify-end gap-3">
                     <button wire:click="$set('modalVisibleForm', false)"
                         class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg">Batal</button>
-                    <button wire:click="store"
-                        class="bg-green-400 hover:bg-green-500 text-white px-6 py-2 rounded-lg">Simpan</button>
+
+                    @if ($modalEdit)
+                        <button wire:click="update"
+                            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Update</button>
+                    @else
+                        <button wire:click="store"
+                            class="bg-green-400 hover:bg-green-500 text-white px-6 py-2 rounded-lg">Simpan</button>
+                    @endif
+                </div>
+
+            </div>
+        </div>
+    @endif
+    @if ($confirmingDelete)
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h3 class="text-lg font-semibold mb-4 text-gray-800">Konfirmasi Hapus</h3>
+                <p class="text-gray-600 mb-6">Apakah kamu yakin ingin menghapus mobil ini?</p>
+
+                <div class="flex justify-end space-x-3">
+                    <button wire:click="$set('confirmingDelete', false)"
+                        class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
+                        Batal
+                    </button>
+                    <button wire:click="deleteMobil" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                        Hapus
+                    </button>
                 </div>
             </div>
         </div>
     @endif
+
 
 </div>
 
