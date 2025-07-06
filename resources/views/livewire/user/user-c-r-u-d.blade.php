@@ -33,7 +33,7 @@
             </select> --}}
 
 
-            <button wire:click="showModalForm" class="bg-white border px-4 py-2 rounded hover:bg-gray-100">
+            <button wire:click="modalVisible" class="bg-white border px-4 py-2 rounded hover:bg-gray-100">
                 Tambah User
             </button>
         </div>
@@ -98,82 +98,82 @@
         {{ $users->links() }}
     </div>
 
-    {{-- @if ($modalVisibleForm)
+    @if ($modalVisibleForm)
         <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
             <div class="bg-white w-full max-w-xl rounded-2xl shadow-lg p-8 max-h-[90vh] overflow-y-auto">
                 <h2 class="text-2xl font-bold mb-6 text-gray-800">
-                    {{ $modalEdit ? 'Edit Mobil' : 'Tambah Mobil' }}
+                    {{ $modalEdit ? 'Edit User' : 'Tambah User' }}
                 </h2>
-
-                @if ($errors->any())
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1">Nama Mobil</label>
-                        <input type="text" wire:model.defer="carName"
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Nama Lengkap</label>
+                        <input type="text" wire:model.defer="fullname"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
-                            placeholder="BMW M4 Competition" />
-                        @error('carName')
+                            placeholder="Nama Lengkap" />
+                        @error('fullname')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1">Tipe Mobil</label>
-                        <select wire:model.defer="carTypeId"
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Email</label>
+                        <input type="email" wire:model.defer="email"
+                            class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
+                            placeholder="Alamat Email" />
+                        @error('email')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Password</label>
+                        <input type="password" wire:model.defer="password"
+                            class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
+                            placeholder="Password" />
+                        @error('password')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Konfirmasi Password</label>
+                        <input type="password" wire:model.defer="password_confirmation"
+                            class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
+                            placeholder="Konfirmasi Password" />
+                        @error('password_confirmation')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Peran</label>
+                        <select wire:model.defer="roleId"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600">
-                            <option value="">Pilih Tipe</option>
-                            @foreach ($carTypes as $jenis)
-                                <option value="{{ $jenis->id }}">{{ $jenis->type_name }}</option>
+                            <option value="">-- Pilih Role --</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
                             @endforeach
                         </select>
-                        @error('carTypeId')
+                        @error('roleId')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-600 mb-1">Gambar Mobil</label>
-                        <input type="file" wire:model="carImage"
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">Foto User</label>
+                        <input type="file" wire:model="userImage"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600" />
 
-                        @error('carImage')
+                        @error('userImage')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
 
-                        @if ($carImage)
+                        @if ($userImage)
                             <div class="mt-2">
-                                <img src="{{ $carImage->temporaryUrl() }}" class="h-32 rounded shadow" />
+                                <img src="{{ $userImage->temporaryUrl() }}" class="h-32 rounded shadow" />
                             </div>
                         @endif
-                    </div>
-
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-600 mb-1">Plat Nomor</label>
-                        <input type="text" wire:model.defer="policeNumber"
-                            class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
-                            placeholder="B 1234 ABC" />
-                        @error('policeNumber')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-600 mb-1">Tahun</label>
-                        <input type="number" wire:model.defer="carYear"
-                            class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600" placeholder="2025"
-                            min="1900" max="{{ date('Y') + 1 }}" />
-                        @error('carYear')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
                     </div>
                 </div>
 
@@ -185,13 +185,14 @@
                         <button wire:click="update"
                             class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg">Update</button>
                     @else
-                        <button wire:click="store"
+                        <button wire:click="createUser"
                             class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Simpan</button>
                     @endif
                 </div>
             </div>
         </div>
-    @endif --}}
+    @endif
+
 
     {{-- Modal Konfirmasi Delete --}}
     {{-- @if ($confirmingDelete)
