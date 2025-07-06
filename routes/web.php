@@ -17,7 +17,7 @@ Route::middleware(['auth', 'verified', 'role:Admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/profile-user', \App\Livewire\User\Profile::class)->name('profile');
+    Route::get('/profile-user', \App\Livewire\User\Profile::class)->name('profile-user');
 });
 
 Route::get('/logout', function () {
