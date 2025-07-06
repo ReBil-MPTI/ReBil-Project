@@ -80,8 +80,9 @@ new class extends Component {
                         class="w-full flex items-center px-4 py-3 text-sm font-medium text-white hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
                         <div class="flex-shrink-0">
                             <div
-                                class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                                <span class="text-sm font-medium text-white dark:text-gray-200">
+                                class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center group">
+                                <span
+                                    class="text-sm font-medium text-white group-hover:text-gray-600 dark:text-gray-200">
                                     {{ substr(auth()->user()->name, 0, 1) }}
                                 </span>
                             </div>
