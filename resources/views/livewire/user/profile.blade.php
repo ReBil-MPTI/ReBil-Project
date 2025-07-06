@@ -28,18 +28,14 @@
                     </a>
 
                     <!-- Logout -->
-                    <form method="POST" action="#">
-                        @csrf
-                        <button type="submit"
-                            class="flex items-center space-x-2 text-red-600 font-semibold px-4 py-2 hover:bg-red-100 rounded-md">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
-                            </svg>
-                            <span>Logout</span>
-                        </button>
-                    </form>
+                    <button wire:click="logout"
+                        class="flex items-center space-x-2 text-red-600 font-semibold px-4 py-2 hover:bg-red-100 rounded-md w-full">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+                        </svg>
+                        <span>Logout</span>
+                    </button>
                 </div>
 
                 <a href="/"
