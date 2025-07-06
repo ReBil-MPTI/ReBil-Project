@@ -48,8 +48,14 @@ new #[Layout('layouts.guest')] class extends Component {
 
         {{-- Kiri: Ilustrasi --}}
         <div class="bg-[#f1f2f6] dark:bg-gray-900 md:flex md:flex-col justify-center hidden">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">Selamat Datang Admin !</h2>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">Jangan lupa lembur ya admin ! mwehehe</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">
+                Selamat Datang di Layanan Kami!
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                Kami senang menyambut Anda. Temukan kemudahan dan layanan terbaik hanya di sini!
+            </p>
+
+
             <img src="{{ asset('img/logo-login-admin.png') }}" alt="Logo" class="h-full mb-4">
         </div>
 
