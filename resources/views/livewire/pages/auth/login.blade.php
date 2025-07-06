@@ -37,7 +37,7 @@ new #[Layout('layouts.guest')] class extends Component {
     <div class="grid grid-cols-1 md:grid-cols-2 w-full max-w-7xl bg-transparent rounded-lg overflow-hidden">
 
         {{-- Kiri: Ilustrasi --}}
-        <div class="bg-[#f1f2f6] dark:bg-gray-900 flex flex-col justify-center">
+        <div class="bg-[#f1f2f6] dark:bg-gray-900 md:flex md:flex-col justify-center hidden">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">Selamat Datang Admin !</h2>
             <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">Jangan lupa lembur ya admin ! mwehehe</p>
             <img src="{{ asset('img/logo-login-admin.png') }}" alt="Logo" class="h-full mb-4">
@@ -63,20 +63,23 @@ new #[Layout('layouts.guest')] class extends Component {
                 </div>
 
                 <!-- Password -->
-                <div>
+                <div x-data="{ show: false }" class="flex flex-col justify-center">
                     <label for="password"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-200">Password</label>
                     <div class="relative">
-                        <input wire:model="form.password" id="password" name="password" type="password" required
+                        <input :type="show ? 'text' : 'password'" wire:model="form.password" id="password"
+                            name="password" required
                             class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-black focus:ring focus:ring-black/50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                             placeholder="Masukkan Password">
                         <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
-                        {{-- Optional: Toggle show/hide --}}
-                        <span class="absolute right-3 top-3.5 text-gray-400">
-                            <i class="bi bi-eye"></i> <!-- pakai Bootstrap Icon jika perlu -->
-                        </span>
+                        <button type="button" @click="show = !show"
+                            class="absolute right-3 top-3.5 text-gray-400 focus:outline-none"
+                            :title="show ? 'Sembunyikan' : 'Tampilkan'">
+                            <i :class="show ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                        </button>
                     </div>
                 </div>
+
 
                 <!-- Submit -->
                 <div>
