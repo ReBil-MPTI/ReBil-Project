@@ -98,6 +98,7 @@ new class extends Component {
                             </p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">
                                 {{ auth()->user()->email }}
+                                {{ auth()->user()->roles?->first()->name }}
                             </p>
                         </div>
                         <div class="flex-shrink-0">
