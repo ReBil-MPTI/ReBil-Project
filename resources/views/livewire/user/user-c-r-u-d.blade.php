@@ -59,15 +59,12 @@
                         <td class="px-6 py-4">{{ $user->name }}</td>
                         <td class="px-6 py-4">{{ $user->email }}</td>
                         <td class="px-6 py-4">
-                            @if ($user->car_image)
-                                <a href="{{ Storage::url($user->car_image) }}" target="_blank" class="car-gallery-item"
-                                    data-lg-size="1600-1067">
-                                    <img src="{{ Storage::url($user->car_image) }}" alt="{{ $user->car_name }}"
-                                        class="h-12 w-20 object-cover cursor-pointer rounded hover:scale-105 transition" />
-                                </a>
-                            @else
-                                <span class="text-gray-400 italic">No Image</span>
-                            @endif
+                            <a href="{{ $user->profile_image ? Storage::url($user->profile_image) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=random&size=160' }}"
+                                target="_blank" class="user-gallery-item" data-lg-size="1600-1067">
+                                <img src="{{ $user->profile_image ? Storage::url($user->profile_image) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=random&size=160' }}"
+                                    alt="{{ $user->name }}"
+                                    class="h-12 w-12 object-cover rounded-full hover:scale-105 transition" />
+                            </a>
                         </td>
                         <td class="px-6 py-4">{{ $user->roles->pluck('name')->first() }}</td>
                         <td class="px-6 py-4">
