@@ -85,13 +85,19 @@ new class extends Component {
                     <button @click="dropdownOpen = !dropdownOpen"
                         class="w-full flex items-center px-4 py-3 text-sm font-medium text-white hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
                         <div class="flex-shrink-0">
-                            <div
-                                class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center group">
-                                <span
-                                    class="text-sm font-medium text-white group-hover:text-gray-600 dark:text-gray-200">
-                                    {{ substr(auth()->user()->name, 0, 1) }}
-                                </span>
-                            </div>
+                            @if (auth()->user()->profile_image)
+                                <img src="{{ asset('storage/' . auth()->user()->profile_image) }}"
+                                    alt="Foto {{ auth()->user()->name }}"
+                                    class="h-10 w-10 rounded-full object-cover" />
+                            @else
+                                <div
+                                    class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center group">
+                                    <span
+                                        class="text-sm font-medium text-white group-hover:text-gray-600 dark:text-gray-200">
+                                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                    </span>
+                                </div>
+                            @endif
                         </div>
                         <div class="ml-3 flex-1 text-left">
                             <p class="text-sm font-medium text-white dark:text-gray-200" x-data="{{ json_encode(['name' => auth()->user()->name]) }}"
@@ -99,7 +105,6 @@ new class extends Component {
                             </p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">
                                 {{ auth()->user()->email }}
-                                {{ auth()->user()->roles?->first()->name }}
                             </p>
                         </div>
                         <div class="flex-shrink-0">

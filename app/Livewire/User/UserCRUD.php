@@ -16,6 +16,8 @@ class UserCRUD extends Component
     public $selectedUserId = null;
     public $modalVisibleForm = false;
     public $modalEdit = false;
+    public $modaldelete = false;
+    public $deleteId = null;
 
     protected function rules()
     {
@@ -132,6 +134,26 @@ class UserCRUD extends Component
         session()->flash('message', 'Pengguna berhasil diperbarui.');
         $this->modalVisibleForm = false;
         $this->modalEdit = false;
+        $this->resetForm();
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->selectedUserId = $id;
+        $this->modaldelete = true;
+    }
+    public function deleteUser()
+    {
+        $user = User::findOrFail($this->selectedUserId);
+
+        try {
+            $user->delete();
+            session()->flash('message', 'Pengguna berhasil dihapus.');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Gagal menghapus pengguna: ' . $e->getMessage());
+        }
+
+        $this->modaldelete = false;
         $this->resetForm();
     }
 

@@ -5,10 +5,10 @@
             {{ __('User Management') }}
         </h2>
     </x-slot>
-    @if (session()->has('success'))
+    @if (session()->has('message'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
             class="bg-green-100 text-green-700 p-2 rounded mb-4">
-            {{ session('success') }}
+            {{ session('message') }}
         </div>
     @endif
 
@@ -195,24 +195,24 @@
 
 
     {{-- Modal Konfirmasi Delete --}}
-    {{-- @if ($confirmingDelete)
+    @if ($modaldelete)
         <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                 <h3 class="text-lg font-semibold mb-4 text-gray-800">Konfirmasi Hapus</h3>
                 <p class="text-gray-600 mb-6">Apakah kamu yakin ingin menghapus mobil ini?</p>
 
                 <div class="flex justify-end space-x-3">
-                    <button wire:click="$set('confirmingDelete', false)"
+                    <button wire:click="$set('confirm$modaldelete', false)"
                         class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
                         Batal
                     </button>
-                    <button wire:click="deleteMobil" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                    <button wire:click="deleteUser" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
                         Hapus
                     </button>
                 </div>
             </div>
         </div>
-    @endif --}}
+    @endif
 </div>
 
 @push('styles')
