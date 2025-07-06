@@ -202,7 +202,7 @@
                 <p class="text-gray-600 mb-6">Apakah kamu yakin ingin menghapus mobil ini?</p>
 
                 <div class="flex justify-end space-x-3">
-                    <button wire:click="$set('confirm$modaldelete', false)"
+                    <button wire:click="$set('modaldelete', false)"
                         class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
                         Batal
                     </button>
