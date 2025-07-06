@@ -34,7 +34,7 @@ class UserCRUD extends Component
             'email' => $emailRule,
             'password' => $passwordRule,
             'password_confirmation' => 'same:password',
-            'userImage' => 'nullable|image|max:2048',
+            'userImage' => 'nullable|image|max:5048',
             'roleId' => 'required|exists:roles,id',
         ];
     }
