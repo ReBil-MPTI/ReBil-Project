@@ -2,10 +2,11 @@
 
 namespace App\Livewire\User;
 
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Livewire\Actions\Logout;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class Profile extends Component
 {
@@ -84,5 +85,11 @@ class Profile extends Component
     public function render()
     {
         return view('livewire.user.profile')->layout('layouts.guest');
+    }
+
+    public function logout(Logout $logout): void
+    {
+        $logout();
+        $this->redirect('/', navigate: true);
     }
 }
