@@ -2,7 +2,7 @@
     {{-- Flash Message --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Mobil') }}
+            {{ __('User Management') }}
         </h2>
     </x-slot>
     @if (session()->has('success'))
@@ -34,7 +34,7 @@
 
 
             <button wire:click="showModalForm" class="bg-white border px-4 py-2 rounded hover:bg-gray-100">
-                Tambah Mobil
+                Tambah User
             </button>
         </div>
     </div>
