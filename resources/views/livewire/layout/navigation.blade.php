@@ -55,11 +55,12 @@ new class extends Component {
                 <i class="bi bi-diagram-3-fill mr-3 h-5 w-5"></i>
                 {{ __('Riwayat Transaksi') }}
             </a>
-            <a href="#" wire:navigate
-                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
-                <i class="bi bi-diagram-3-fill mr-3 h-5 w-5"></i>
-                {{ __('Management User') }}
+            <a href="{{ route('users.index') }}" wire:navigate
+                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('users.index') ? 'bg-blue-100 text-primary dark:bg-blue-900 dark:text-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white' }}">
+                <i class="bi bi-people-fill mr-3 h-5 w-5"></i>
+                {{ __('User Management') }}
             </a>
+
         </nav>
         <div class="fixed bottom-10 w-full">
             <div class="px-4 py-2  border-gray-200">

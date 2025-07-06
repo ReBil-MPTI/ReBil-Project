@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\CarCrud\Cars;
+use App\Livewire\User\UserCRUD;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,7 @@ Route::middleware(['auth', 'verified', 'role:Admin'])->group(function () {
         Route::view('/', 'dashboard')->name('dashboard');
         Route::view('/profile', 'profile')->name('profile');
         Route::get('/mobil', Cars::class)->name('cars.index');
+        Route::get('/user-management', UserCRUD::class)->name('users.index');
     });
 });
 

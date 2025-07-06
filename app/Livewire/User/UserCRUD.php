@@ -38,6 +38,6 @@ class UserCRUD extends Component
         return view('livewire.user.user-c-r-u-d', [
             'users' => User::with('roles')->paginate(10),
             'roles' => Role::all(),
-        ]);
+        ])->layout('layouts.app');
     }
 }
