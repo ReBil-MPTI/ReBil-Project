@@ -5,7 +5,7 @@ use App\Livewire\User\UserCRUD;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('landing');
 
 Route::middleware(['auth', 'verified', 'role:Admin'])->group(function () {
     Route::prefix('dashboard')->group(function () {

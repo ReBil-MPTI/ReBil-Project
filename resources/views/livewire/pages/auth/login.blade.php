@@ -18,14 +18,24 @@ new #[Layout('layouts.guest')] class extends Component {
         try {
             $this->form->authenticate();
 
-            if (!auth()->user()->hasRole('Admin')) {
-                auth()->logout();
-                session()->flash('error', 'Anda tidak memiliki akses.');
+            $user = auth()->user();
+
+            // Cek role
+            if ($user->hasRole('Admin')) {
+                Session::regenerate();
+                $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
                 return;
             }
 
-            Session::regenerate();
-            $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+            if ($user->hasRole('Customer')) {
+                Session::regenerate();
+                $this->redirectIntended(default: route('landing', absolute: false), navigate: true);
+                return;
+            }
+
+            // Jika role tidak dikenali, logout dan tolak akses
+            auth()->logout();
+            session()->flash('error', 'Role Anda tidak memiliki akses.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Jika email/password salah
             session()->flash('error', 'Email atau password salah.');
