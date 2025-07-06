@@ -28,7 +28,9 @@ new class extends Component {
             {{-- Tampilkan Avatar + Dropdown untuk User --}}
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none">
-                    <img src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}"
+                    <img src="{{ Auth::user()->profile_image
+                        ? asset('storage/' . Auth::user()->profile_image)
+                        : 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}"
                         alt="Profile" class="w-8 h-8 rounded-full object-cover">
                     <span class="text-sm font-medium text-black dark:text-white">
                         {{ Auth::user()->name }}
@@ -42,7 +44,7 @@ new class extends Component {
                 {{-- Dropdown --}}
                 <div x-show="open" @click.away="open = false"
                     class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-2 z-50">
-                    <a href="#"
+                    <a href="/profile"
                         class="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600">Profile</a>
                     <button wire:click="logout"
                         class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20 transition duration-150 ease-in-out">
