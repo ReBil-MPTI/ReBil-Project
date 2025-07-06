@@ -129,7 +129,7 @@ new class extends Component {
 
                         <div class="py-1">
                             <a href="{{ route('profile') }}" wire:navigate
-                                class="block px-4 py-2 text-sm text-white hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
+                                class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 transition duration-150 ease-in-out">
                                 <i class="bi bi-person-fill mr-2"></i>
                                 {{ __('Profile') }}
                             </a>
