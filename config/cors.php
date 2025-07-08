@@ -8,27 +8,13 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'paths' => [
-        'api/*',
-        'livewire/upload-file',
-        'sanctum/csrf-cookie',
-    ],
+    'paths' => ['api/*', 'livewire/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [
-        'https://rebil-project-production.up.railway.app',
-        // Tambahkan domain frontend lain jika perlu
-    ],
-
-    'allowed_origins_patterns' => [],
-
-    'allowed_headers' => ['*'],
-
-    'exposed_headers' => [],
-
-    'max_age' => 0,
+    'allowed_origins' => ['https://rebil-project-production.up.railway.app'],
 
     'supports_credentials' => true,
+
 
 ];
