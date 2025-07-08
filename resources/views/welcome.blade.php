@@ -149,6 +149,7 @@
     @include('layouts.navbar')
     <div class="p-20"></div>
     @include('layouts.footer')
+    @livewireScripts
 </body>
 
 </html>
