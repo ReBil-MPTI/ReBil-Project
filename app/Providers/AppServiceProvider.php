@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Features\SupportFileUploads\GenerateSignedUploadUrl;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
+        GenerateSignedUploadUrl::$expiresAfterSeconds = 600;
     }
 }
