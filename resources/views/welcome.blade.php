@@ -144,6 +144,8 @@
             </div>
         </div> --}}
     @include('layouts.navbar')
+    <div class="p-20"></div>
+    @include('layouts.footer')
 </body>
 
 </html>
