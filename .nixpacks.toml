@@ -6,13 +6,17 @@ nixPkgs = [
   "php81Extensions.mbstring",
   "php81Extensions.tokenizer",
   "php81Extensions.xml",
-  "nodejs_18"
+  "nodejs_18" # Sudah termasuk npm!
+]
+
+[phases.install]
+cmds = [
+  "composer install --no-dev --optimize-autoloader",
+  "npm ci"
 ]
 
 [phases.build]
 cmds = [
-  "composer install --no-dev --optimize-autoloader",
-  "npm ci",
   "npm run build"
 ]
 
