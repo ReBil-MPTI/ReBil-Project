@@ -2,17 +2,17 @@
 nixPkgs = [
   "php",
   "php81Extensions.pdo_mysql",
-  "php81Extensions.mbstring",
   "php81Extensions.fileinfo",
+  "php81Extensions.mbstring",
   "php81Extensions.tokenizer",
   "php81Extensions.xml",
-  "nodejs_18" # ← ini cukup, jangan tambahkan npm
+  "nodejs_18"
 ]
 
 [phases.build]
 cmds = [
   "composer install --no-dev --optimize-autoloader",
-  "npm install",
+  "npm ci",
   "npm run build"
 ]
 
