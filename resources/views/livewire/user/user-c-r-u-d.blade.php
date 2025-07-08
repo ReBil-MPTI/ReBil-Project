@@ -214,6 +214,10 @@
         </div>
     @endif
 </div>
+<script>
+    window.livewire = window.livewire || {};
+    window.livewire.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+</script>
 
 @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css" />
