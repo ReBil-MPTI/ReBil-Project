@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Storage;
 
 class UserCRUD extends Component
 {
@@ -65,9 +66,10 @@ class UserCRUD extends Component
         $this->validate($this->rules(), $this->messages);
 
         try {
-            $imagePath = $this->userImage
-                ? $this->userImage->store('profile_images', 'public')
-                : null;
+            $imagePath = null;
+            if ($this->userImage) {
+                $imagePath = Storage::disk('public')->putFile('profile_images', $this->userImage);
+            }
 
             $user = User::create([
                 'name' => $this->fullname,
@@ -110,9 +112,10 @@ class UserCRUD extends Component
         $user = User::findOrFail($this->selectedUserId);
 
         if ($this->userImage) {
-            $imagePath = $this->userImage->store('profile_images', 'public');
+            $imagePath = Storage::disk('public')->putFile('profile_images', $this->userImage);
             $user->profile_image = $imagePath;
         }
+
 
         $user->name = $this->fullname;
 
