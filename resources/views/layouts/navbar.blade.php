@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-yellow-400 py-4">
+<nav x-data="{ open: false }" class="bg-yellow-400 py-4 fixed w-full border-b border-black">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {{-- Kiri: Logo --}}
         <div class="flex items-center space-x-2">
