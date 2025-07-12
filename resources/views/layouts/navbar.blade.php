@@ -23,7 +23,7 @@
         {{-- Tengah: Menu --}}
         <ul class="hidden md:flex space-x-8 font-medium text-black">
             <li><a href="#home" class="hover:text-white transition">Home</a></li>
-            <li><a href="#why-us" class="hover:text-white transition">Why Us</a></li>
+            <li><a href="#whyus" class="nav-link hover:text-white transition">Why Us</a></li>
             <li><a href="#sewa-mobil" class="hover:text-white transition">Sewa Mobil</a></li>
         </ul>
 
@@ -49,3 +49,21 @@
         </div>
     </div>
 </nav>
+
+<script>
+    function setActiveLink() {
+        const links = document.querySelectorAll('.nav-link');
+        const hash = window.location.hash;
+
+        links.forEach(link => {
+            if (link.getAttribute('href') === hash) {
+                link.classList.add('text-white');
+            } else {
+                link.classList.remove('text-white');
+            }
+        });
+    }
+
+    window.addEventListener('load', setActiveLink);
+    window.addEventListener('hashchange', setActiveLink);
+</script>

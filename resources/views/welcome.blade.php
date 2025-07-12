@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8">
@@ -45,7 +45,7 @@
     </header>
 
     <main>
-        <div class="md:p-32">
+        <div class="md:p-32" id="whyus">
             <div class="w-full flex justify-center flex-col items-center mt-10">
                 <h1 class="font-bold font-poppins md:text-5xl text-xl text-center w-3/4 p-2">Kenapa harus memilih kamui
                     untuk
