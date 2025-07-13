@@ -179,7 +179,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            @if ($trx->status !== 'pending')
+                                            @if ($trx->status !== 'pending' && $trx->status !== 'rejected')
                                                 <a href="{{ route('transactions.print', $trx->id) }}" target="_blank"
                                                     class="inline-block px-4 py-2 bg-black text-white text-sm rounded hover:bg-gray-800">
                                                     Cetak Bukti Pembayaran
