@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('build/assets/app-Bx5aHosZ.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-kXvSF43q.css') }}">
     <script src="{{ asset('build/assets/app-C6zcaxnx.js') }}" defer></script>
 
     <!-- Scripts -->
