@@ -159,13 +159,39 @@
                                             <p>No Ref: <span
                                                     class="text-yellow-700 font-semibold">{{ $trx->noref }}</span>
                                             </p>
-                                            <p>Status: <span class="capitalize">{{ $trx->status }}</span></p>
+                                            <div>Status:
+                                                @if ($trx->status === 'pending')
+                                                    <span
+                                                        class="inline-block px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">
+                                                        Menunggu Verifikasi
+                                                    </span>
+                                                @elseif ($trx->status === 'rejected')
+                                                    <span
+                                                        class="inline-block px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">
+                                                        Ditolak
+                                                    </span>
+                                                @elseif ($trx->status === 'approved')
+                                                    <span
+                                                        class="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                                                        Telah Diverifikasi
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
                                         <div>
-                                            <a href="{{ route('transactions.print', $trx->id) }}" target="_blank"
-                                                class="inline-block px-4 py-2 bg-black text-white text-sm rounded hover:bg-gray-800">
-                                                Cetak Bukti Pembayaran
-                                            </a>
+                                            @if ($trx->status !== 'pending')
+                                                <a href="{{ route('transactions.print', $trx->id) }}" target="_blank"
+                                                    class="inline-block px-4 py-2 bg-black text-white text-sm rounded hover:bg-gray-800">
+                                                    Cetak Bukti Pembayaran
+                                                </a>
+                                            @else
+                                                <span
+                                                    class="inline-block px-4 py-2 bg-gray-300 text-gray-600 text-sm rounded cursor-not-allowed"
+                                                    title="Bukti hanya tersedia setelah pembayaran dikonfirmasi.">
+                                                    Cetak Bukti Pembayaran
+                                                </span>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
