@@ -3,6 +3,7 @@
 namespace App\Livewire\User;
 
 use Livewire\Component;
+use App\Models\Transaction;
 use Livewire\WithFileUploads;
 use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,8 @@ class Profile extends Component
     public $photo;
     public $new_password;
     public $new_password_confirmation;
+    public string $activeTab = 'profile';
+    public $transactions = [];
 
     public function mount()
     {
@@ -28,11 +31,21 @@ class Profile extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->phone = $user->phone_number;
+
+        $this->transactions = Transaction::with('car')
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
     }
 
     public function enableEdit()
     {
         $this->isEditing = true;
+    }
+
+    public function showTab($tab)
+    {
+        $this->activeTab = $tab;
     }
 
     public function save()
