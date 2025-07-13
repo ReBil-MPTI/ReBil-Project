@@ -1,13 +1,15 @@
 <?php
 
 use App\Livewire\CarCrud\Cars;
-use App\Livewire\Transaction\IndexCar;
 use App\Livewire\User\UserCRUD;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Transaction\IndexCar;
+use App\Http\Controllers\TransactionPrintController;
 
 Route::view('/', 'pages.main')->name('landing');
 Route::get('/sewa-mobil', IndexCar::class)->name('cars.sewa');
+Route::get('/transactions/{id}/print', [TransactionPrintController::class, 'print'])->name('transactions.print');
 
 Route::middleware(['auth', 'verified', 'role:Admin'])->group(function () {
     Route::prefix('dashboard')->group(function () {
