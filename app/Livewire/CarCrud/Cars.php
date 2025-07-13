@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\CarType;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class Cars extends Component
@@ -128,14 +129,15 @@ class Cars extends Component
         $this->validate();
 
         try {
+            $imagePath = null;
             if ($this->carImage) {
-                $imagePath = $this->carImage->store('cars', 'public');
-                $this->carImage = $imagePath;
+                $imagePath = Storage::disk('public')->put('cars', $this->carImage);
             }
+
             Car::create([
                 'car_name' => $this->carName,
                 'car_type_id' => $this->carTypeId,
-                'car_image' => $this->carImage,
+                'car_image' => $imagePath,
                 'police_number' => $this->policeNumber,
                 'year' => $this->carYear,
                 'transmission_type' => $this->transmissionType,
@@ -189,23 +191,18 @@ class Cars extends Component
         try {
             $car = Car::findOrFail($this->carId);
 
+            $car = Car::findOrFail($this->carId);
+
             if ($this->carImage) {
-                $imagePath = $this->carImage->store('cars', 'public');
+                $imagePath = Storage::disk('public')->put('cars', $this->carImage);
                 $car->car_image = $imagePath;
             }
 
-            $car->update([
-                'car_name' => $this->carName,
-                'car_type_id' => $this->carTypeId,
-                'police_number' => $this->policeNumber,
-                'year' => $this->carYear,
-                'transmission_type' => $this->transmissionType,
-                'engine_capacity' => $this->engineCapacity,
-                'fuel_type' => $this->fuelType,
-                'transmission_type_concept' => $this->transmissionConcept,
-                'price' => $this->price,
-                'seat_capacity' => $this->seatCapacity,
-            ]);
+            $car->car_name = $this->carName;
+            $car->car_type_id = $this->carTypeId;
+            $car->police_number = $this->policeNumber;
+            $car->year = $this->carYear;
+            $car->save();
 
             session()->flash('success', 'Data mobil berhasil diperbarui.');
             $this->resetForm();
