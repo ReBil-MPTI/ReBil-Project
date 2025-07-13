@@ -22,9 +22,14 @@
 
         {{-- Tengah: Menu --}}
         <ul class="hidden md:flex space-x-8 font-medium text-black">
-            <li><a href="#home" class="hover:text-white transition">Home</a></li>
+            <li><a href="/" class="hover:text-white transition">Home</a></li>
             <li><a href="#whyus" class="nav-link hover:text-white transition">Why Us</a></li>
-            <li><a href="#sewa-mobil" class="hover:text-white transition">Sewa Mobil</a></li>
+            <li>
+                <a href="{{ route('cars.sewa') }}"
+                    class="transition {{ Request::is('sewa-mobil') ? 'text-white' : '' }} hover:text-white">
+                    Sewa Mobil
+                </a>
+            </li>
         </ul>
 
         {{-- Kanan: Button Login & Daftar --}}
@@ -37,9 +42,11 @@
 
     {{-- Mobile Menu Dropdown --}}
     <div x-show="open" class="md:hidden px-4 pt-4 pb-2 space-y-2 font-medium text-black bg-yellow-400">
-        <a href="#home" class="block hover:text-white transition">Home</a>
+        <a href="/" class="block hover:text-white transition">Home</a>
         <a href="#why-us" class="block hover:text-white transition">Why Us</a>
-        <a href="#sewa-mobil" class="block hover:text-white transition">Sewa Mobil</a>
+        <a href="{{ route('cars.sewa') }}"
+            class="block {{ Request::is('sewa-mobil') ? 'text-white' : '' }} hover:text-white transition">Sewa
+            Mobil</a>
 
         {{-- Login/Daftar juga ditampilkan di mobile --}}
         <div class="pt-4 border-t border-black">
