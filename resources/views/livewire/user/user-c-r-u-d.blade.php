@@ -39,7 +39,6 @@
         </div>
     </div>
 
-    {{-- Tabel Mobil --}}
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white rounded overflow-hidden border border-gray-200">
             <thead class="bg-gray-50 text-gray-400 text-left text-sm">
