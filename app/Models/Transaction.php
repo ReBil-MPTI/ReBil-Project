@@ -13,6 +13,16 @@ class Transaction extends Model
         'id',
     ];
 
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function getDuration()
     {
         return [

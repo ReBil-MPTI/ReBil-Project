@@ -195,4 +195,95 @@
             </div>
         </div>
     @endif
+
+    {{-- Modal Proses Transaksi --}}
+    @if ($processing)
+        <div class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-6 rounded-lg text-center w-80 border-2 border-yellow-400 shadow-xl">
+                <img src="{{ asset('img/notif.png') }}" class="mx-auto mb-4 w-24 h-24 object-contain"
+                    alt="Notif">
+                <p class="text-lg font-semibold text-gray-800 mb-1">Tunggu Sebentar, Proses Pembayaranmu</p>
+                <p class="text-lg font-semibold text-gray-800 mb-4">Sedang Diproses</p>
+                <div class="flex justify-center">
+                    <div class="w-8 h-8 border-4 border-gray-300 border-t-yellow-500 rounded-full animate-spin"></div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    {{-- Modal Transaksi Berhasil --}}
+    @if ($success && $latestTransaction)
+        <div class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-6 rounded-xl text-left w-full max-w-md border border-gray-200 shadow-2xl">
+                <div class="flex justify-center">
+                    <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mb-4">
+                        <i class="bi bi-check2 text-3xl text-black"></i>
+                    </div>
+                </div>
+
+                <h3 class="text-center text-lg font-semibold text-gray-800 mb-1">Pembayaran berhasil !</h3>
+                <h2 class="text-center text-2xl font-bold text-black mb-4">
+                    IDR {{ number_format($latestTransaction->total_payment, 0, ',', '.') }}
+                </h2>
+
+                <hr class="mb-4 border-gray-300">
+
+                <div class="text-sm text-gray-700 space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Nomor Pemesanan</span>
+                        <span class="font-medium">{{ $latestTransaction->noref }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Waktu Pembayaran</span>
+                        <span
+                            class="font-medium">{{ \Carbon\Carbon::parse($latestTransaction->created_at)->format('d-m-Y, H:i') }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Metode Pembayaran</span>
+                        <span class="font-medium">Bank Transfer</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Nama Pemesan</span>
+                        <span class="font-medium">{{ auth()->user()->name }}</span>
+                    </div>
+                </div>
+
+                <hr class="my-4 border-dashed border-t border-gray-300">
+
+                <div class="flex justify-between items-center text-base font-semibold">
+                    <span>Total Harga</span>
+                    <span>IDR {{ number_format($latestTransaction->total_payment, 0, ',', '.') }}</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">*Sudah termasuk PPN</p>
+
+                <div class="mt-5 p-3 border border-yellow-400 rounded-lg bg-yellow-50">
+                    <p class="text-sm font-semibold text-yellow-700 mb-2">Detail Mobil</p>
+                    <ul class="text-sm text-gray-700 space-y-1 list-disc pl-4">
+                        <li>Mobil: <strong>{{ $latestTransaction->car->car_name ?? '-' }}</strong></li>
+                        <li>Transmisi: {{ $latestTransaction->car->transmission_type ?? '-' }}</li>
+                        <li>Daya Mesin: {{ $latestTransaction->car->engine_capacity ?? '-' }}</li>
+                        <li>Kapasitas: {{ $latestTransaction->car->seat_capacity ?? '-' }} Kursi</li>
+                    </ul>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button wire:click="resetAfterSuccess"
+                        class="px-5 py-2 bg-yellow-500 text-white font-medium rounded hover:bg-yellow-600">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+
+    <script>
+        window.addEventListener('start-processing', () => {
+            setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('finishProcessing'))
+            }, 2500);
+        });
+    </script>
+
+
 </div>

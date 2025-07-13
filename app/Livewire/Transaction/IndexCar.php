@@ -28,7 +28,13 @@ class IndexCar extends Component
     public $loginAlert = false;
     public $totalPayment;
     public $virtualAccount = '1234567890123456';
+    public $processing = false;
+    public $success = false;
 
+    public $latestTransaction;
+
+    // ⬅️ Tangkap event dari JavaScript
+    protected $listeners = ['finishProcessing' => 'finishProcessing'];
 
     public function render()
     {
@@ -59,12 +65,10 @@ class IndexCar extends Component
         }
     }
 
-
     public function openLoginAlert()
     {
         $this->loginAlert = true;
     }
-
 
     public function nextStep()
     {
@@ -87,6 +91,13 @@ class IndexCar extends Component
             'paymentImage' => 'required|image|max:2048',
         ]);
 
+        $this->processing = true;
+
+        $this->dispatch('start-processing');
+    }
+
+    public function finishProcessing()
+    {
         try {
             $transaction = new Transaction();
             $transaction->car_id = $this->carId;
@@ -94,7 +105,7 @@ class IndexCar extends Component
             $transaction->address = $this->address;
             $transaction->duration = $this->duration;
             $transaction->status = $this->status;
-            $transaction->noref = 'TRX-' . strtoupper(md5($createdAt = now()->timestamp . '-' . $this->userId . '-' . $this->carId));
+            $transaction->noref = 'TRX-' . strtoupper(md5(now()->timestamp . '-' . $this->userId . '-' . $this->carId));
             $transaction->total_payment = $this->duration * $this->selectedCar->price;
 
             if ($this->paymentImage) {
@@ -103,10 +114,14 @@ class IndexCar extends Component
 
             $transaction->save();
 
-            session()->flash('success', 'Transaksi berhasil dibuat!');
+            $this->latestTransaction = Transaction::with('car', 'user')
+                ->where('user_id', $this->userId)
+                ->latest()
+                ->first();
+            $this->success = true;
+            $this->processing = false;
 
             $this->reset([
-                'modal',
                 'step',
                 'carId',
                 'selectedCar',
@@ -117,6 +132,12 @@ class IndexCar extends Component
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
+    }
+
+    public function resetAfterSuccess()
+    {
+        $this->success = false;
+        $this->modal = false;
     }
 
     public function resetForm()
@@ -132,6 +153,7 @@ class IndexCar extends Component
             'totalPayment',
         ]);
     }
+
     public function closeModal()
     {
         $this->resetForm();
