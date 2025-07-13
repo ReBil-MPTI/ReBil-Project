@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('fuel_type')->nullable()->after('engine_capacity');
             $table->string('transmission_concept')->nullable()->after('fuel_type');
             $table->unsignedBigInteger('price')->nullable()->after('transmission_concept');
-            $table->string('seat_capacity')->nullable()->after('price');
         });
     }
 
