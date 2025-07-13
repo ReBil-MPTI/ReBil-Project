@@ -162,9 +162,9 @@
                                             <p>Status: <span class="capitalize">{{ $trx->status }}</span></p>
                                         </div>
                                         <div>
-                                            <a href="" target="_blank"
-                                                class="inline-block mt-2 bg-black text-white text-sm px-3 py-1 rounded hover:bg-gray-800">
-                                                Cetak Bukti
+                                            <a href="{{ route('transactions.print', $trx->id) }}" target="_blank"
+                                                class="inline-block px-4 py-2 bg-black text-white text-sm rounded hover:bg-gray-800">
+                                                Cetak Bukti Pembayaran
                                             </a>
                                         </div>
                                     </div>
