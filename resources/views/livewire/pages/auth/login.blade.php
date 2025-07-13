@@ -32,8 +32,6 @@ new #[Layout('layouts.guest')] class extends Component {
                 $this->redirectIntended(default: route('landing', absolute: false), navigate: true);
                 return;
             }
-
-            // Jika role tidak dikenali, logout dan tolak akses
             auth()->logout();
             session()->flash('error', 'Role Anda tidak memiliki akses.');
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -100,9 +98,13 @@ new #[Layout('layouts.guest')] class extends Component {
                 <!-- Submit -->
                 <div>
                     <button type="submit"
-                        class="w-full py-2 px-4 rounded-md bg-white text-black font-semibold border border-black shadow-[2px_2px_0_#000] hover:bg-gray-100">
+                        class="w-full mb-5 py-2 px-4 rounded-md bg-white text-black font-semibold border border-black shadow-[2px_2px_0_#000] hover:bg-gray-100">
                         Masuk
                     </button>
+                    <a href="/register" wire:navigate
+                        class="text-sm  underline text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                        Belum punya akun?
+                    </a>
                 </div>
             </form>
         </div>
