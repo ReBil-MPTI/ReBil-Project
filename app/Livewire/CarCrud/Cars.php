@@ -2,11 +2,12 @@
 
 namespace App\Livewire\CarCrud;
 
-use Livewire\Component;
 use App\Models\Car;
+use App\Models\User;
 use App\Models\CarType;
-use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class Cars extends Component
 {
@@ -17,6 +18,12 @@ class Cars extends Component
     public $policeNumber;
     public $carYear;
     public $carImage;
+    public $transmissionType;
+    public $engineCapacity;
+    public $fuelType;
+    public $transmissionConcept;
+    public $price;
+    public $seatCapacity;
     public $carId = null;
     public $confirmingDelete = false;
     public $deleteId = null;
@@ -92,6 +99,14 @@ class Cars extends Component
         ])->layout('layouts.app');
     }
 
+    //ini buat consumen
+    public function index()
+    {
+        $cars = Car::with('carType')->paginate(10);
+        $user = User::all();
+        return view('transaction.car', get_defined_vars());
+    }
+
     public function updatedSearchName()
     {
         $this->resetPage();
@@ -123,6 +138,12 @@ class Cars extends Component
                 'car_image' => $this->carImage,
                 'police_number' => $this->policeNumber,
                 'year' => $this->carYear,
+                'transmission_type' => $this->transmissionType,
+                'engine_capacity' => $this->engineCapacity,
+                'fuel_type' => $this->fuelType,
+                'transmission_type_concept' => $this->transmissionConcept,
+                'price' => $this->price,
+                'seat_capacity' => $this->seatCapacity,
             ]);
 
             session()->flash('success', 'Mobil berhasil ditambahkan.');
@@ -145,7 +166,12 @@ class Cars extends Component
         $this->policeNumber = $car->police_number;
         $this->carYear = $car->year;
         $this->carImage = null;
-
+        $this->transmissionType = $car->transmission_type;
+        $this->engineCapacity = $car->engine_capacity;
+        $this->fuelType = $car->fuel_type;
+        $this->transmissionConcept = $car->transmission_type_concept;
+        $this->price = $car->price;
+        $this->seatCapacity = $car->seat_capacity;
         $this->modalEdit = true;
         $this->modalVisibleForm = true;
     }
@@ -173,6 +199,12 @@ class Cars extends Component
                 'car_type_id' => $this->carTypeId,
                 'police_number' => $this->policeNumber,
                 'year' => $this->carYear,
+                'transmission_type' => $this->transmissionType,
+                'engine_capacity' => $this->engineCapacity,
+                'fuel_type' => $this->fuelType,
+                'transmission_type_concept' => $this->transmissionConcept,
+                'price' => $this->price,
+                'seat_capacity' => $this->seatCapacity,
             ]);
 
             session()->flash('success', 'Data mobil berhasil diperbarui.');
