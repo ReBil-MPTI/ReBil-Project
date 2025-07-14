@@ -159,10 +159,6 @@
                             @foreach ($carTypes as $jenis)
                                 <option value="{{ $jenis->id }}">{{ $jenis->type_name }}</option>
                             @endforeach
-                            @if ($modalEdit)
-                                <option value="{{ $mobil->car_type_id }}" selected>
-                                    {{ $mobil->carType->type_name ?? 'Tidak Diketahui' }}</option>
-                            @endif
                         </select>
                         @error('carTypeId')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -170,33 +166,27 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Tipe Transmisi</label>
-                        <select wire:model.defer="transmissionType"
+                        <select wire:model="transmissionType"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600">
                             <option value="" hidden>Pilih Tipe Transmisi</option>
-                            @foreach (Car::getTransmissionTypes() as $k => $v)
-                                <option value="{{ $k }}">{{ $v }}</option>
+                            @foreach (Car::getTransmissionTypes() as $key => $value)
+                                <option value="{{ $key }}" @selected($key == $transmissionType)>
+                                    {{ $value }}
+                                </option>
                             @endforeach
-                            @if ($modalEdit)
-                                <option value="{{ $mobil->transmission_type }}" selected>
-                                    {{ $mobil->transmission_type }}</option>
-                            @endif
                         </select>
-                        @error('carTypeId')
+                        @error('transmissionType')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Jenis Penggerak</label>
-                        <select wire:model.defer="transmissionConcept"
+                        <select wire:model="transmissionConcept"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600">
                             <option value="" hidden>Pilih Jenis Penggerak</option>
                             @foreach (Car::getTransmissionTypeConcept() as $k => $v)
                                 <option value="{{ $k }}">{{ $v }}</option>
                             @endforeach
-                            @if ($modalEdit)
-                                <option value="{{ $mobil->transmission_type_concept }}" selected>
-                                    {{ $mobil->transmission_type_concept }}</option>
-                            @endif
                         </select>
                         @error('carTypeId')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -204,16 +194,12 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Tipe Bahan Bakar</label>
-                        <select wire:model.defer="fuelType"
+                        <select wire:model="fuelType"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600">
                             <option value="" hidden>Pilih Tipe Bahan Bakar</option>
                             @foreach (Car::getFuelType() as $k => $v)
                                 <option value="{{ $k }}">{{ $v }}</option>
                             @endforeach
-                            @if ($modalEdit)
-                                <option value="{{ $mobil->fuel_type }}" selected>
-                                    {{ $mobil->fuel_type }}</option>
-                            @endif
                         </select>
                         @error('carTypeId')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -221,16 +207,12 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Kapasitas tempat duduk</label>
-                        <select wire:model.defer="seatCapacity"
+                        <select wire:model="seatCapacity"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600">
                             <option value="" hidden>Pilih Kapasitas tempat duduk</option>
                             @foreach (Car::getSeatCapacity() as $k => $v)
                                 <option value="{{ $k }}">{{ $v }}</option>
                             @endforeach
-                            @if ($modalEdit)
-                                <option value="{{ $mobil->seat_capacity }}" selected>
-                                    {{ $mobil->seat_capacity }}</option>
-                            @endif
                         </select>
                         @error('carTypeId')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -246,21 +228,16 @@
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
 
-                        @if ($carImage)
-                            <div class="mt-2">
-                                <img src="{{ $carImage->temporaryUrl() }}" class="h-32 rounded shadow" />
-                            </div>
-                        @endif
-                        @if ($modalEdit)
-                            <div class="mt-2">
-                                <img src="{{ Storage::url($mobil->car_image) }}" class="h-32 rounded shadow" />
-                            </div>
+                        @if ($carImage && !is_string($carImage))
+                            <img src="{{ $carImage->temporaryUrl() }}" class="h-32 rounded shadow" />
+                        @elseif($carImage)
+                            <img src="{{ Storage::url($carImage) }}" class="h-32 rounded shadow" />
                         @endif
                     </div>
 
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Plat Nomor</label>
-                        <input type="text" wire:model.defer="policeNumber"
+                        <input type="text" wire:model="policeNumber"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
                             placeholder="B 1234 ABC" />
                         @error('policeNumber')
@@ -270,7 +247,7 @@
 
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Kapasitas Mesin</label>
-                        <input type="number" wire:model.defer="engineCapacity"
+                        <input type="number" wire:model="engineCapacity"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
                             placeholder="Masukan kapasitas mesin ..." />
                         @error('engineCapacity')
@@ -279,7 +256,7 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Tahun</label>
-                        <input type="number" wire:model.defer="carYear"
+                        <input type="number" wire:model="carYear"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600" placeholder="2025"
                             min="1900" max="{{ date('Y') + 1 }}" />
                         @error('carYear')
@@ -288,7 +265,7 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-600 mb-1">Harga /Hari</label>
-                        <input type="number" wire:model.defer="price"
+                        <input type="number" wire:model="price"
                             class="w-full border rounded-lg px-4 py-2 bg-gray-100 text-gray-600"
                             placeholder="Masukan harga sewa.." min="1900" max="{{ date('Y') + 1 }}" />
                         @error('carYear')

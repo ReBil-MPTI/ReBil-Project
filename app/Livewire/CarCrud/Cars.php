@@ -161,39 +161,43 @@ class Cars extends Component
     public function edit($id)
     {
         $car = Car::findOrFail($id);
-
         $this->carId = $car->id;
         $this->carName = $car->car_name;
         $this->carTypeId = $car->car_type_id;
         $this->policeNumber = $car->police_number;
         $this->carYear = $car->year;
-        $this->carImage = null;
-        $this->transmissionType = $car->transmission_type;
+        $this->carImage = $car->car_image;
+        $this->transmissionType = $car->getRawOriginal('transmission_type');
+        $this->fuelType = $car->getRawOriginal('fuel_type');
+        $this->transmissionConcept = $car->getRawOriginal('transmission_type_concept');
+        $this->seatCapacity = $car->getRawOriginal('seat_capacity');
         $this->engineCapacity = $car->engine_capacity;
-        $this->fuelType = $car->fuel_type;
-        $this->transmissionConcept = $car->transmission_type_concept;
         $this->price = $car->price;
-        $this->seatCapacity = $car->seat_capacity;
         $this->modalEdit = true;
         $this->modalVisibleForm = true;
     }
 
     public function update()
     {
-        $this->validate([
+        $rules = [
             'carName' => 'required|string',
             'carTypeId' => 'required|exists:car_types,id',
             'policeNumber' => 'required|string|unique:cars,police_number,' . $this->carId,
             'carYear' => 'required|integer|min:1900',
-            'carImage' => 'nullable|image|max:2048',
-        ]);
+        ];
+
+        // Validasi gambar hanya jika ada file baru diupload (bukan string lama dari DB)
+        if ($this->carImage && !is_string($this->carImage)) {
+            $rules['carImage'] = 'image|max:2048';
+        }
+
+        $this->validate($rules);
 
         try {
             $car = Car::findOrFail($this->carId);
 
-            $car = Car::findOrFail($this->carId);
-
-            if ($this->carImage) {
+            // Jika gambar baru diunggah
+            if ($this->carImage && !is_string($this->carImage)) {
                 $imagePath = Storage::disk('public')->put('cars', $this->carImage);
                 $car->car_image = $imagePath;
             }
@@ -202,6 +206,12 @@ class Cars extends Component
             $car->car_type_id = $this->carTypeId;
             $car->police_number = $this->policeNumber;
             $car->year = $this->carYear;
+            $car->transmission_type = $this->transmissionType;
+            $car->fuel_type = $this->fuelType;
+            $car->transmission_type_concept = $this->transmissionConcept;
+            $car->seat_capacity = $this->seatCapacity;
+            $car->engine_capacity = $this->engineCapacity;
+            $car->price = $this->price;
             $car->save();
 
             session()->flash('success', 'Data mobil berhasil diperbarui.');
@@ -210,11 +220,12 @@ class Cars extends Component
             $this->modalEdit = false;
 
             $this->loadAvailableYears();
-
         } catch (\Exception $e) {
             session()->flash('error', 'Gagal memperbarui data: ' . $e->getMessage());
         }
     }
+
+
 
     public function confirmDelete($id)
     {
@@ -239,10 +250,28 @@ class Cars extends Component
 
     public function resetForm()
     {
-        $this->reset(['carId', 'carName', 'carTypeId', 'policeNumber', 'carYear', 'carImage']);
+        $this->reset([
+            'carId',
+            'carName',
+            'carTypeId',
+            'policeNumber',
+            'carYear',
+            'transmissionType',
+            'fuelType',
+            'transmissionConcept',
+            'seatCapacity',
+            'engineCapacity',
+            'price'
+        ]);
+
+        if (!$this->modalEdit) {
+            $this->carImage = null;
+        }
+
         $this->resetErrorBag();
         $this->resetValidation();
     }
+
 
     public function clearFilters()
     {
