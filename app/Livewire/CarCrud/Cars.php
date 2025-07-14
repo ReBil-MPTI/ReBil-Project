@@ -186,7 +186,6 @@ class Cars extends Component
             'carYear' => 'required|integer|min:1900',
         ];
 
-        // Validasi gambar hanya jika ada file baru diupload (bukan string lama dari DB)
         if ($this->carImage && !is_string($this->carImage)) {
             $rules['carImage'] = 'image|max:2048';
         }
