@@ -27,13 +27,12 @@ class IndexCar extends Component
     public $paymentImage;
     public $loginAlert = false;
     public $totalPayment;
-    public $virtualAccount = '1234567890123456';
+    public $virtualAccount = '668901043867530';
     public $processing = false;
     public $success = false;
 
     public $latestTransaction;
 
-    // ⬅️ Tangkap event dari JavaScript
     protected $listeners = ['finishProcessing' => 'finishProcessing'];
 
     public function render()
