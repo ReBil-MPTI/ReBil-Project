@@ -127,7 +127,7 @@
 
                 @foreach ($steps as $i => $s)
                     @if ($i % 2 == 0)
-                        <div data-aos="fade-right"><img src="{{ asset('img/' . $s['img']) }}" alt=""></div>
+                        <div data-aos="fade-right"><img src="{{ asset('img/' . $s['img']) }}" alt="tes"></div>
                         <div class="flex flex-col justify-center p-10 md:gap-3" data-aos="fade-left">
                             <h1 class="font-bold font-poppins text-xl md:text-3xl">{{ $s['step'] }}</h1>
                             <p class="font-bold font-poppins text-xl md:text-3xl">{{ $s['desc'] }}</p>
