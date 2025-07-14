@@ -30,7 +30,7 @@
                 Mulai petualangan Anda sekarang, pilih mobil impian Anda dan nikmati perjalanan tanpa khawatir.<br />
                 Pengalaman berkendara yang tak terlupakan dimulai di sini."
             </p>
-            <a href="#"
+            <a href="/sewa-mobil"
                 class="inline-flex items-center mt-8 px-6 py-3 bg-black text-white rounded-md font-medium hover:bg-gray-800 transition">
                 Sewa Mobil Sekarang
                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
