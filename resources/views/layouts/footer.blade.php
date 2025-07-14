@@ -10,7 +10,7 @@
                 </h1>
             </div>
             <div class="flex justify-center mt-5 ">
-                <a href="#"
+                <a href="/sewa-mobil"
                     class="py-2 px-4 bg-black hover:bg-gray-800 transition-all rounded-lg text-yellow-400 font-poppins font-light">Sewa
                     Mobil
                     Sekarang</a>
@@ -36,12 +36,34 @@
             <div>
                 <h3 class="text-lg font-bold text-yellow-400 font-poppins mb-2">Features</h3>
                 <ul class="space-y-1">
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">Login</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">Daftar</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">Ganti Email</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">Ganti Password</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">Pemesanan Mobil</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">Report via admin</a></li>
+                    <li><a href="/Login" class="hover:underline text-yellow-400 font-poppins">Login</a></li>
+                    <li><a href="/register" class="hover:underline text-yellow-400 font-poppins">Daftar</a></li>
+                    <li>
+                        @auth
+                            <a href="{{ url('/profile-user') }}" class="hover:underline text-yellow-400 font-poppins">Ganti
+                                Email</a>
+                        @else
+                            <a href="#" onclick="showLoginAlert()"
+                                class="hover:underline text-yellow-400 font-poppins">Ganti Email</a>
+                        @endauth
+                    </li>
+                    <li>
+                        @auth
+                            <a href="{{ url('/profile-user') }}" class="hover:underline text-yellow-400 font-poppins">Ganti
+                                Password</a>
+                        @else
+                            <a href="#" onclick="showLoginAlert()"
+                                class="hover:underline text-yellow-400 font-poppins">Ganti Password</a>
+                        @endauth
+                    </li>
+                    <li><a href="/sewa-mobil" class="hover:underline text-yellow-400 font-poppins">Pemesanan Mobil</a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/6285641748049" target="_blank"
+                            class="hover:underline text-yellow-400 font-poppins">
+                            Report via admin
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -49,10 +71,14 @@
             <div>
                 <h3 class="text-lg font-bold mb-2 text-yellow-400 font-poppins">Developer</h3>
                 <ul class="space-y-1">
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">@ayakjugaisyah</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">@alin__syariff</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">@zainnayaputri_</a></li>
-                    <li><a href="#" class="hover:underline text-yellow-400 font-poppins">@elnzzah</a></li>
+                    <li><a href="https://www.instagram.com/ayakjugaisyah" target="_blank"
+                            class="hover:underline text-yellow-400 font-poppins">@ayakjugaisyah</a></li>
+                    <li><a href="https://www.instagram.com/alin_syariff" target="_blank"
+                            class="hover:underline text-yellow-400 font-poppins">@alin__syariff</a></li>
+                    <li><a href="https://www.instagram.com/zainnayaputri_" target="_blank"
+                            class="hover:underline text-yellow-400 font-poppins">@zainnayaputri_</a></li>
+                    <li><a href="https://www.instagram.com/elnzzah" target="_blank"
+                            class="hover:underline text-yellow-400 font-poppins">@elnzzah</a></li>
                 </ul>
             </div>
         </div>
@@ -66,3 +92,15 @@
         </p>
     </div>
 </footer>
+
+<script script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function showLoginAlert() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Maaf, anda harus login dulu.',
+            showConfirmButton: true,
+            confirmButtonText: 'OK',
+        });
+    }
+</script>
