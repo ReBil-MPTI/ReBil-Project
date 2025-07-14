@@ -137,15 +137,23 @@
                             </p>
 
                             <div class="mt-4">
-                                <label class="text-sm font-semibold text-yellow-900 block mb-1">Nomor Virtual
-                                    Account</label>
-                                <div class="flex items-center gap-2">
-                                    <input type="text" readonly value="{{ $virtualAccount }}"
-                                        class="w-full border border-yellow-300 rounded px-3 py-2 bg-white text-sm">
+                                <label class="text-sm font-semibold text-yellow-900 block mb-1">Bank Transfer</label>
+                                <div class="flex items-center gap-4 justify-center">
+                                    <div class=" inline-flex items-center gap-2">
+                                        <img src="{{ asset('img/bri.webp') }}" alt="VA" class="w-10">
+                                        <h1 class="font-poppins font-semibold text-yellow-500 text-lg">
+                                            {{ $virtualAccount }}</h1>
+                                    </div>
                                     <button type="button"
-                                        onclick="navigator.clipboard.writeText('{{ $virtualAccount }}')"
-                                        class="px-2 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600">
-                                        Salin
+                                        onclick="navigator.clipboard.writeText('{{ $virtualAccount }}').then(() => Swal.fire({
+                                            icon: 'success',
+                                            title: 'Disalin!',
+                                            text: 'Nomor Virtual Account berhasil disalin ke clipboard.',
+                                            timer: 2000,
+                                            showConfirmButton: false
+                                        }))"
+                                        class="px-2 py-1 text-sm text-yellow-500">
+                                        <i class="bi bi-copy"></i>
                                     </button>
                                 </div>
                             </div>
@@ -277,6 +285,7 @@
     @endif
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         window.addEventListener('start-processing', () => {
             setTimeout(() => {

@@ -2,8 +2,7 @@
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {{-- Kiri: Logo --}}
         <div class="flex items-center space-x-2">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-8 w-auto">
-            <span class="font-bold text-lg text-black">REBIL</span>
+            <img src="{{ asset('img/main-logo.png') }}" alt="Logo" class="h-10 w-auto">
         </div>
 
         {{-- Hamburger (mobile only) --}}
