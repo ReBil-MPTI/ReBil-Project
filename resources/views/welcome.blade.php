@@ -179,13 +179,6 @@
 
     @include('layouts.footer')
     @livewireScripts
-    <script>
-        document.addEventListener('livewire:load', () => {
-            Livewire.hook('message.processed', () => {
-                AOS.refresh();
-            });
-        });
-    </script>
 </body>
 
 </html>
