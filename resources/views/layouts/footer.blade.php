@@ -36,7 +36,7 @@
             <div>
                 <h3 class="text-lg font-bold text-yellow-400 font-poppins mb-2">Features</h3>
                 <ul class="space-y-1">
-                    <li><a href="/Login" class="hover:underline text-yellow-400 font-poppins">Login</a></li>
+                    <li><a href="/login" class="hover:underline text-yellow-400 font-poppins">Login</a></li>
                     <li><a href="/register" class="hover:underline text-yellow-400 font-poppins">Daftar</a></li>
                     <li>
                         @auth
