@@ -115,12 +115,14 @@
                         [
                             'img' => 'selamat-datang3.png',
                             'step' => 'Step 03',
-                            'desc' => 'Lakukan Pembayaran, pilih metode pembayaran yang diinginkan.',
+                            'desc' =>
+                                'Masukkan alamat dan pilih durasi sewa, kemudian lakukan pembayaran menggunakan Bank Transfer dan upload bukti pembayaran.',
                         ],
                         [
                             'img' => 'selamat-datang4.png',
                             'step' => 'Step 04',
-                            'desc' => 'Datang ke Lokasi dan Jemput Mobil Impianmu dengan dokumen lengkap',
+                            'desc' =>
+                                'Datang ke Lokasi dan Jemput Mobil Impianmu,  Pastikan untuk membawa dokumen yang diperlukan seperti SIM, kartu identitas, dan dokumen lain yang diminta oleh penyedia layanan.',
                         ],
                     ];
                 @endphp
@@ -146,19 +148,6 @@
 
     @include('layouts.footer')
     @livewireScripts
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        document.addEventListener('livewire:load', () => {
-            Livewire.hook('message.processed', () => {
-                AOS.refresh();
-            });
-        });
-    </script>
 </body>
 
 </html>
