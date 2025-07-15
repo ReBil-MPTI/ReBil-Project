@@ -62,6 +62,7 @@ class Car extends Model
             '02' => 'Rear Wheel Drive',
             '03' => 'All Wheel Drive',
             '04' => 'Four Wheel Drive',
+            '05' => 'Diesel Jere sarip'
         ];
     }
 
@@ -78,6 +79,8 @@ class Car extends Model
             '03' => '5 kursi',
             '04' => '7 kursi',
             '05' => '8 kursi',
+            '06' => '15 kursi',
+            '07' => '20 kursi',
         ];
     }
 
