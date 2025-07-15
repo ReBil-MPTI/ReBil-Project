@@ -90,14 +90,12 @@
             <div class=" flex flex-col  justify-center p-10 md:gap-3">
                 <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 01</h1>
                 <p class="font-bold font-poppins text-xl md:text-3xl">Buat akun, masukkan informasi yang diperlukan
-                    seperti
-                    nama, alamat email, nomor telepon, dan kata
-                    sandi.</p>
+                    seperti nama, alamat email, nomor telepon, dan kata sandi.</p>
             </div>
             <div class=" flex flex-col  justify-center p-10 md:gap-3 mt-10">
                 <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 02</h1>
                 <p class="font-bold font-poppins text-xl md:text-3xl">Pilih Jenis Mobil, Pilih mobil yang sesuai
-                    dengan kebutuhan dan keinginanmu, kemudian klik atau pilih opsi untuk melakukan reservasi</p>
+                    dengan kebutuhan dan keinginanmu, kemudian klik atau pilih opsi untuk melakukan reservasi.</p>
             </div>
             <div class="mt-10">
                 <img src="{{ asset('img/selamat-datang2.png') }}" alt="">
@@ -107,14 +105,14 @@
             </div>
             <div class=" flex flex-col  justify-center p-10 md:gap-3 mt-10">
                 <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 03</h1>
-                <p class="font-bold font-poppins text-xl md:text-3xl">Lakukan Pembayaran, Pilih metode pembayaran
-                    yang diinginkan (kartu kredit, transfer bank, atau opsi lainnya).</p>
+                <p class="font-bold font-poppins text-xl md:text-3xl">Masukkan alamat dan pilih durasi sewa,
+                    kemudian lakukan pembayaran menggunakan Bank Transfer dan upload bukti pembayaran.</p>
             </div>
             <div class=" flex flex-col  justify-center p-10 md:gap-3 mt-10">
                 <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 04</h1>
                 <p class="font-bold font-poppins text-xl md:text-3xl">Datang ke Lokasi dan Jemput Mobil Impianmu,
                     Pastikan untuk membawa dokumen yang diperlukan seperti SIM, kartu identitas, dan dokumen lain
-                    yang diminta oleh penyedia layanan</p>
+                    yang diminta oleh penyedia layanan.</p>
             </div>
             <div class="mt-10">
                 <img src="{{ asset('img/selamat-datang4.png') }}" alt="">

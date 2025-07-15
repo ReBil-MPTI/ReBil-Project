@@ -118,59 +118,7 @@
             </div>
         </div>
 
-        <div class="md:p-32">
-            <div class="w-full flex justify-center flex-col items-center mt-10">
-                <h1 class="font-bold font-poppins md:text-5xl text-xl text-center w-3/4 p-2">Hanya Beberapa Langkah
-                    Untuk
-                </h1>
-                <div class="inline-flex">
-                    <h1 class="font-bold bg-yellow-400 font-poppins md:text-5xl text-xl text-center w-fit md:p-2">
-                        Menyewa
-                    </h1>
-                    <h1 class="font-bold font-poppins md:text-5xl text-xl text-center w-fit md:p-2">Mobil Di kami </h1>
-                </div>
-                <h1 class="font-bold font-poppins  text-xl text-center w-3/4 p-2">Itu sangat mudah, silahkan ikuti 4
-                    langkah ini
-                </h1>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-10 md:mt-20" data-aos="fade-right"
-                data-aos-delay="300">
-                <div>
-                    <img src="{{ asset('img/selamat-datang.png') }}" alt="">
-                </div>
-                <div class=" flex flex-col  justify-center p-10 md:gap-3">
-                    <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 01</h1>
-                    <p class="font-bold font-poppins text-xl md:text-3xl">Buat akun, masukkan informasi yang diperlukan
-                        seperti nama, alamat email, nomor telepon, dan kata sandi.</p>
-                </div>
-                <div class=" flex flex-col  justify-center p-10 md:gap-3 mt-10">
-                    <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 02</h1>
-                    <p class="font-bold font-poppins text-xl md:text-3xl">Pilih Jenis Mobil, Pilih mobil yang sesuai
-                        dengan kebutuhan dan keinginanmu, kemudian klik atau pilih opsi untuk melakukan reservasi.</p>
-                </div>
-                <div class="mt-10">
-                    <img src="{{ asset('img/selamat-datang2.png') }}" alt="">
-                </div>
-                <div class="mt-10">
-                    <img src="{{ asset('img/selamat-datang3.png') }}" alt="">
-                </div>
-                <div class=" flex flex-col  justify-center p-10 md:gap-3 mt-10">
-                    <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 03</h1>
-                    <p class="font-bold font-poppins text-xl md:text-3xl">Masukkan alamat dan pilih durasi sewa,
-                        kemudian lakukan pembayaran menggunakan Bank Transfer dan upload bukti pembayaran.</p>
-                </div>
-                <div class=" flex flex-col  justify-center p-10 md:gap-3 mt-10">
-                    <h1 class="font-bold font-poppins text-xl md:text-3xl">Step 04</h1>
-                    <p class="font-bold font-poppins text-xl md:text-3xl">Datang ke Lokasi dan Jemput Mobil Impianmu,
-                        Pastikan untuk membawa dokumen yang diperlukan seperti SIM, kartu identitas, dan dokumen lain
-                        yang diminta oleh penyedia layanan.</p>
-                </div>
-                <div class="mt-10">
-                    <img src="{{ asset('img/selamat-datang4.png') }}" alt="">
-                </div>
-            </div>
-        </div>
 
         <div class="md:px-32 py-10">
 
