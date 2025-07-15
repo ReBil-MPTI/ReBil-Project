@@ -15,16 +15,12 @@ class CartypeSeeder extends Seeder
     {
         //membuat seeder jenis mobil
         $carTypes = [
-            'Sedan',
             'SUV',
             'Hatchback',
             'MPV',
-            'Coupe',
-            'Convertible',
             'Wagon',
             'Pickup',
-            'Van',
-            'Crossover'
+            'Minibus'
         ];
         foreach ($carTypes as $type) {
             CarType::create([
