@@ -61,8 +61,7 @@ class Car extends Model
             '01' => 'Front Wheel Drive',
             '02' => 'Rear Wheel Drive',
             '03' => 'All Wheel Drive',
-            '04' => 'Four Wheel Drive',
-            '05' => 'Diesel Jere sarip'
+            '04' => 'Four Wheel Drive'
         ];
     }
 
