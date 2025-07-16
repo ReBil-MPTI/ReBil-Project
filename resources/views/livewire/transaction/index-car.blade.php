@@ -244,9 +244,9 @@
                     <div class="flex justify-between">
                         <span class="text-gray-500">Waktu Pembayaran</span>
                         <span 
-                        class="font-medium">{{ \Carbon\Carbon::parse($latestTransaction->created_at)
-                        ->setTimezone('Asia/Jakarta')
-                        ->format('d-m-Y, H:i') }}</span>
+                            class="font-medium">{{ \Carbon\Carbon::parse($latestTransaction->created_at)
+                            ->setTimezone('Asia/Jakarta')
+                            ->format('d-m-Y, H:i') }}</span>
                         </div>
                     <div class="flex justify-between">
                         <span class="text-gray-500">Metode Pembayaran</span>

@@ -83,7 +83,10 @@
         </div>
         <div class="info-row">
             <span>Waktu Pembayaran</span>
-            <span>{{ \Carbon\Carbon::parse($transaction->created_at)->format('d-m-Y, H:i') }}</span>
+            <span>{{ \Carbon\Carbon::parse($transaction->created_at)
+                            ->setTimezone('Asia/Jakarta')
+                            ->format('d-m-Y, H:i') }}</span>
+
         </div>
         <div class="info-row">
             <span>Metode Pembayaran</span>
