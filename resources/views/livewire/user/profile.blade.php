@@ -152,7 +152,8 @@
                                     <div class="flex justify-between items-center">
                                         <div>
                                             <p class="text-sm text-gray-500">
-                                                {{ $trx->created_at->format('d M Y H:i') }}</p>
+                                                    {{ $trx->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }}
+                                                </p>
                                             <p class="font-semibold text-lg">{{ $trx->car->car_name }}</p>
                                             <p>Durasi: {{ $trx->duration }} Hari</p>
                                             <p>Total: Rp {{ number_format($trx->total_payment, 0, ',', '.') }}</p>
