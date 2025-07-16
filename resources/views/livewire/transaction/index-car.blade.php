@@ -270,7 +270,7 @@
                         <li>Mobil: <strong>{{ $latestTransaction->car->car_name ?? '-' }}</strong></li>
                         <li>Transmisi: {{ $latestTransaction->car->transmission_type ?? '-' }}</li>
                         <li>Daya Mesin: {{ $latestTransaction->car->engine_capacity ?? '-' }}</li>
-                        <li>Kapasitas: {{ $latestTransaction->car->seat_capacity ?? '-' }} Kursi</li>
+                        <li>Kapasitas: {{ $latestTransaction->car->seat_capacity ?? '-' }}</li>
                     </ul>
                 </div>
 
