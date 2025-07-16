@@ -21,7 +21,7 @@
                             <li>Jenis Transmisi: {{ $item->transmission_type }}</li>
                             <li>Jenis Penggerak: {{ $item->transmission_type_concept }}</li>
                             <li>Tenaga / Kapasitas Mesin: {{ $item->engine_capacity }}</li>
-                            <li>Kapasitas Duduk: {{ $item->seat_capacity }} Kursi</li>
+                            <li>Kapasitas Duduk: {{ $item->seat_capacity }}</li>
                             <li>Bahan Bakar: {{ $item->fuel_type }}</li>
                         </ul>
                     </div>
